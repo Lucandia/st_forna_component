@@ -1,0 +1,115 @@
+<html>
+  <head>
+    <!-- ADDING FORNAC CSS -->
+    <link rel="stylesheet" href="fornac.css">
+    <style>
+      svg {
+          width: 100%;
+          height: 100%;
+          max-width: 100%;
+          /* border: 1px solid #ff4b4bff; */
+      }
+
+      table {
+        border-collapse: collapse;
+    }
+
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- Fornac JavaScript -->
+    <script src="https://unpkg.com/d3@3.5"></script>
+    <script src="fornac.js"></script>
+    <!-- Set up your HTML here -->
+    <div id='rna_ss'> </div>
+    <script>
+      "use strict";
+      
+      // ----------------------------------------------------
+      // Default functions form Streamlit Forum: https://discuss.streamlit.io/t/code-snippet-create-components-without-any-frontend-tooling-no-react-babel-webpack-etc/13064
+
+      function sendMessageToStreamlitClient(type, data) {
+        var outData = Object.assign({
+          isStreamlitMessage: true,
+          type: type,
+        }, data);
+        window.parent.postMessage(outData, "*");
+      }
+
+      function init() {
+        sendMessageToStreamlitClient("streamlit:componentReady", {apiVersion: 1});
+      }
+
+      function setFrameHeight(height) {
+        sendMessageToStreamlitClient("streamlit:setFrameHeight", {height: height});
+      }
+
+      // The `data` argument can be any JSON-serializable value.
+      function sendDataToPython(data) {
+        sendMessageToStreamlitClient("streamlit:setComponentValue", data);
+      }
+
+      // ----------------------------------------------------
+      // Forna Container setup
+
+      var myRNA = document.getElementById("rna_ss");
+
+      function onDataFromPython(event) {
+        if (event.data.type !== "streamlit:render") return;
+        // Get the data from the Streamlit app
+        let structure = event.data.args.structure;
+        let sequence = event.data.args.sequence;
+        let labelInterval = event.data.args.label_interval;
+        if (labelInterval === undefined) {
+          labelInterval = 10;
+        }
+
+        // Create the Forna container
+        let container = new fornac.FornaContainer("#rna_ss",
+              {'animation': event.data.args.animation, 
+              'zoomable': event.data.args.zoomable, 
+              'labelInterval': labelInterval,
+              'editable': event.data.args.editable,
+              'initialSize': [event.data.args.height, event.data.args.height],
+            });
+        
+        // Display the direction arrows and node labels and colors
+        container.displayDirectionArrows(event.data.args.arrows);
+        container.displayNodeLabel(event.data.args.node_label);
+        if (labelInterval === 0 || labelInterval === false ) {
+          container.displayNumbering(false)
+        }
+        if (event.data.args.color_scheme !== undefined) {
+          container.changeColorScheme(event.data.args.color_scheme);
+        }
+
+        // Add the RNA to the container
+        let options = {'structure': structure,
+            'sequence': sequence,
+        };
+        container.addRNA(options.structure, options);
+
+        // Adjust the colors of the nodes
+        if (event.data.args.colors !== undefined && event.data.args.color_scheme === "custom") {
+          container.addCustomColorsText(event.data.args.colors);
+        }
+
+        // Add event listener to send the data back to Python
+        myRNA.addEventListener("click", function() {
+          sendDataToPython({
+            value: container.getStructuresDotBracket(),
+            dataType: "json",
+          });
+        })
+        // Set the size of the container
+        setFrameHeight(event.data.args.height, event.data.args.height);
+      }
+
+      // Hook things up!
+      window.addEventListener("message", onDataFromPython);
+      init();
+
+    </script>
+  </body>
+</html>
