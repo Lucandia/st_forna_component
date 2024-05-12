@@ -1,20 +1,18 @@
 from setuptools import setup, find_packages
 from pathlib import Path
 
-import setuptools
-
 this_directory = Path(__file__).parent
 long_description = (this_directory / "README.md").read_text()
 
-
 setup(
     name='st_forna_component',
-    version='0.0.1',
+    version='0.0.3',
     author='Luca Monari',
     author_email='Luca.Monari@mr.mpg.de',
     description='A Streamlit component for the Forna RNA visualization tool',
+    long_description_content_type="text/markdown",
     long_description=long_description,
-    packages=setuptools.find_packages(),
+    packages=find_packages(),
     include_package_data=True,
     classifiers=[],
     python_requires=">=3.7",
