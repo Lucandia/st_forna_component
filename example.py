@@ -65,7 +65,7 @@ if __name__ == "__main__":
     ### custom colors for each nucleotide
     elif color_scheme == "custom":
         with col2: # select nucleotide index
-            index = st.number_input("Select nucleotide index", 0, len(dot_bracket), 0)
+            index = st.number_input("Select nucleotide index", 1, len(dot_bracket), 1)
         with col3: # select color
             color = st.color_picker("Select a color", "#ffffff")
         # save the color in the session state
