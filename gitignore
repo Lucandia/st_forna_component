@@ -1,0 +1,18 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+**/.DS_Store
+**/.AppleDouble
+**/.LSOverride
+
+
+# Python
+__pycache__/
+**/__pycache__/
+build/
+dist/
+*.egg-info/
+
+# Vscode
+.vscode/
