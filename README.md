@@ -12,6 +12,8 @@ pip install st_forna_component
 
 ## Example
 
+![Alt Text](example_image.png)
+
 Look at the [example](https://fornacomponent.streamlit.app/) for a simple example:
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://fornacomponent.streamlit.app/)
