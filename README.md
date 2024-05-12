@@ -12,7 +12,9 @@ pip install st_forna_component
 
 ## Example
 
-Look at the [example](example.py) for a simple example.
+Look at the [example](https://fornacomponent.streamlit.app/) for a simple example:
+
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://fornacomponent.streamlit.app/)
 
 ## Usage
 
