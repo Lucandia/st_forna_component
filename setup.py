@@ -6,7 +6,7 @@ long_description = (this_directory / "README.md").read_text()
 
 setup(
     name='st_forna_component',
-    version='0.0.1',
+    version='0.0.2',
     author='Luca Monari',
     author_email='Luca.Monari@mr.mpg.de',
     description='A Streamlit component for the Forna RNA visualization tool',
