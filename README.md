@@ -43,6 +43,16 @@ st.write("Received value:", return_value)
 
 ```
 
+## How to cite:
+
+Please include this citation if the Forna Component is used in an academic study:
+
+```
+Lucandia. Lucandia/st_forna_component; Zenodo, 2024. https://zenodo.org/doi/10.5281/zenodo.11181680.
+```
+
+[![DOI](https://zenodo.org/badge/799569235.svg)](https://zenodo.org/doi/10.5281/zenodo.11181680)
+
 
 
 
