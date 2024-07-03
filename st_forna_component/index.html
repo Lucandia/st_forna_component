@@ -95,13 +95,18 @@
           container.addCustomColorsText(event.data.args.colors);
         }
 
-        // Add event listener to send the data back to Python
-        myRNA.addEventListener("click", function() {
-          sendDataToPython({
-            value: container.getStructuresDotBracket(),
-            dataType: "json",
-          });
-        })
+        // Enable the listener for the editable mode
+        if (event.data.args.editable == true) {
+          // Add event listener to send the data back to Python
+          myRNA.addEventListener("click", function() {
+            sendDataToPython({
+              value: container.getStructuresDotBracket(),
+              dataType: "json",
+            });
+          })
+        }
+
+
         // Set the size of the container
         setFrameHeight(event.data.args.height, event.data.args.height);
       }
