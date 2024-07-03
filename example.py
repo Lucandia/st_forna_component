@@ -93,8 +93,8 @@ if __name__ == "__main__":
     
     st.write("Received value:", return_value)
     if return_value:
-        st.write("Received sequence", return_value[0])
-        st.write("Received structure", return_value[1])
+        st.write("Received structure: ", return_value[0])
+        st.write("Received sequence: ", return_value[1])
 
 
     # '(((((((((((((((((((..[[[[[[.)))))(((((((((....)))))))))(((((....)))))))))))))))))))((((((((((((((....)))))))))(((((....)))))(((((((((..]]]]]].))))))))))))))'
