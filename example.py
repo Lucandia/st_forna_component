@@ -37,7 +37,7 @@ if __name__ == "__main__":
     with col2:
         height = st.slider("Frame height", 10, 800, 300)
     with col3:
-        label_interval = st.slider("Label interval", 0, len(sequence), 2)
+        label_interval = st.slider("Label interval", 0, len(dot_bracket), 2)
 
     ### color scheme options
     with col1, col2, col3:
